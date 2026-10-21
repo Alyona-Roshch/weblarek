@@ -13,13 +13,14 @@ export class LarekApi {
     this._api = api;
   }
 
-  // Делает GET-запрос 
-  getProductList(): Promise<IProduct[]> {
-    return this._api.get<IProductResponse>('product/') 
-      .then((response) => response.items);
+  // Делает GET-запрос
+  getProductList(): Promise<IProductResponse> {
+    return this._api
+      .get<IProductResponse>("product/")
+      .then((response) => response);
   }
 
-  // Делает POST-запрос 
+  // Делает POST-запрос
   createOrder(order: IOrder): Promise<IOrderResult> {
     return this._api.post<IOrderResult>("order", order);
   }

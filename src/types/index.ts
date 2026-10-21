@@ -18,8 +18,11 @@ export interface IProduct {
   price: number | null;
 }
 
+// Новый именованный тип для способов оплаты по брифу проекта
+export type TPaymentMethod = "card" | "cash";
+
 export interface IBuyer {
-  payment: string;
+  payment: TPaymentMethod | "";
   email: string;
   phone: string;
   address: string;
