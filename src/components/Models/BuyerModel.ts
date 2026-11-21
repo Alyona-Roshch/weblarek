@@ -1,16 +1,23 @@
-import { IBuyer, TFormErrors } from "../../types";
+import { IBuyer, TFormErrors, TPayment } from "../../types";
+import { IEvents } from "../base/Events";
 
 export class BuyerModel {
-  private payment: string = "";
+  private payment: TPayment = "";
   private address: string = "";
   private email: string = "";
   private phone: string = "";
 
-  constructor() {}
+  // Принимаем брокер событий в конструктор
+  constructor(protected events: IEvents) {}
 
   // Сохранение данных
   setField(field: keyof IBuyer, value: string): void {
-    this[field] = value;
+    if (field === 'payment') {
+      this.payment = value as TPayment;
+    } else {
+      this[field] = value;
+    }
+    this.events.emit('buyer:changed');
   }
 
   // Получение всех данных покупателя в виде единого объекта
@@ -29,9 +36,10 @@ export class BuyerModel {
     this.address = "";
     this.email = "";
     this.phone = "";
+    this.events.emit('buyer:changed');
   }
 
-  // Валидация данных.
+  // Валидация данных
   validate(): TFormErrors {
     const errors: TFormErrors = {};
 

@@ -1,6 +1,5 @@
 import {
   IApi,
-  IProduct,
   IOrder,
   IOrderResult,
   IProductResponse,
@@ -13,15 +12,11 @@ export class LarekApi {
     this._api = api;
   }
 
-  // Делает GET-запрос
   getProductList(): Promise<IProductResponse> {
-    return this._api
-      .get<IProductResponse>("product/")
-      .then((response) => response);
+    return this._api.get<IProductResponse>("/product/");
   }
 
-  // Делает POST-запрос
   createOrder(order: IOrder): Promise<IOrderResult> {
-    return this._api.post<IOrderResult>("order", order);
+    return this._api.post<IOrderResult>("/order", order);
   }
 }

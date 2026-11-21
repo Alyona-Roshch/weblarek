@@ -1,14 +1,17 @@
 import { IProduct } from "../../types";
+import { IEvents } from "../base/Events";
 
 export class ProductModel {
   private items: IProduct[] = [];
   private preview: IProduct | null = null;
 
-  constructor() {}
+  // Принимаем брокер событий в конструктор
+  constructor(protected events: IEvents) {}
 
   // Сохранение массива товаров в модель
   setItems(items: IProduct[]): void {
     this.items = items;
+    this.events.emit('items:changed'); // Сообщаем, что каталог обновился
   }
 
   // Получение массива товаров из модели
@@ -24,6 +27,7 @@ export class ProductModel {
   // Сохранение товара для подробного отображения
   setPreview(item: IProduct | null): void {
     this.preview = item;
+    this.events.emit('preview:changed'); // Сообщаем, что выбран товар для просмотра
   }
 
   // Получение товара для подробного отображения
