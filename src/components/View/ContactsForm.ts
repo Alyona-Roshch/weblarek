@@ -10,8 +10,14 @@ export class ContactsForm extends Form<IBuyer> {
   constructor(container: HTMLFormElement, events: IEvents) {
     super(container, events);
 
-    this._emailInput = ensureElement<HTMLInputElement>('input[name=email]', container);
-    this._phoneInput = ensureElement<HTMLInputElement>('input[name=phone]', container);
+    this._emailInput = ensureElement<HTMLInputElement>(
+      "input[name=email]",
+      container,
+    );
+    this._phoneInput = ensureElement<HTMLInputElement>(
+      "input[name=phone]",
+      container,
+    );
   }
 
   set email(value: string) {

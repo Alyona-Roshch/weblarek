@@ -10,19 +10,25 @@ export class OrderForm extends Form<IBuyer> {
   constructor(container: HTMLFormElement, events: IEvents) {
     super(container, events);
 
-    this._buttons = ensureAllElements<HTMLButtonElement>('.button_alt', container);
-    this._addressInput = ensureElement<HTMLInputElement>('input[name=address]', container);
+    this._buttons = ensureAllElements<HTMLButtonElement>(
+      ".button_alt",
+      container,
+    );
+    this._addressInput = ensureElement<HTMLInputElement>(
+      "input[name=address]",
+      container,
+    );
 
     this._buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        this.onInputChange('payment', button.name);
+      button.addEventListener("click", () => {
+        this.onInputChange("payment", button.name);
       });
     });
   }
 
   set payment(name: TPayment) {
     this._buttons.forEach((button) => {
-      button.classList.toggle('button_alt-active', button.name === name);
+      button.classList.toggle("button_alt-active", button.name === name);
     });
   }
 

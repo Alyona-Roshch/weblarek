@@ -16,11 +16,17 @@ export class Success extends Component<ISuccess> {
   constructor(container: HTMLElement, actions: ISuccessActions) {
     super(container);
 
-    this._close = ensureElement<HTMLButtonElement>('.order-success__close', this.container);
-    this._total = ensureElement<HTMLElement>('.order-success__description', this.container);
+    this._close = ensureElement<HTMLButtonElement>(
+      ".order-success__close",
+      this.container,
+    );
+    this._total = ensureElement<HTMLElement>(
+      ".order-success__description",
+      this.container,
+    );
 
     if (actions?.onClick) {
-      this._close.addEventListener('click', actions.onClick);
+      this._close.addEventListener("click", actions.onClick);
     }
   }
 

@@ -14,16 +14,22 @@ export class Page extends Component<IPage> {
   protected _wrapper: HTMLElement;
   protected _basket: HTMLElement;
 
-  constructor(container: HTMLElement, protected events: IEvents) {
+  constructor(
+    container: HTMLElement,
+    protected events: IEvents,
+  ) {
     super(container);
 
-    this._counter = ensureElement<HTMLElement>('.header__basket-counter', container);
-    this._catalog = ensureElement<HTMLElement>('.gallery', container);
-    this._wrapper = ensureElement<HTMLElement>('.page__wrapper', container);
-    this._basket = ensureElement<HTMLElement>('.header__basket', container);
+    this._counter = ensureElement<HTMLElement>(
+      ".header__basket-counter",
+      container,
+    );
+    this._catalog = ensureElement<HTMLElement>(".gallery", container);
+    this._wrapper = ensureElement<HTMLElement>(".page__wrapper", container);
+    this._basket = ensureElement<HTMLElement>(".header__basket", container);
 
-    this._basket.addEventListener('click', () => {
-      this.events.emit('basket:open');
+    this._basket.addEventListener("click", () => {
+      this.events.emit("basket:open");
     });
   }
 
@@ -37,9 +43,9 @@ export class Page extends Component<IPage> {
 
   set locked(value: boolean) {
     if (value) {
-      this._wrapper.classList.add('page__wrapper_locked');
+      this._wrapper.classList.add("page__wrapper_locked");
     } else {
-      this._wrapper.classList.remove('page__wrapper_locked');
+      this._wrapper.classList.remove("page__wrapper_locked");
     }
   }
 }
